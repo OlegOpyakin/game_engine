@@ -1,5 +1,5 @@
 # game_engine
-![Example](plot.png)
+![Example](pictures/mountains.png)
 
 Based on [series of videos](https://youtu.be/ih20l3pJoeU?si=wLg_fkEyXaHegQiT)
 
