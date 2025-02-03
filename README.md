@@ -1,4 +1,6 @@
 # game_engine
+![Example](plot.png)
+
 Based on [series of videos](https://youtu.be/ih20l3pJoeU?si=wLg_fkEyXaHegQiT)
 
 
@@ -29,3 +31,8 @@ We can move in all dimensiones:
 
 ## Which external libraries used?
 Only ```SDL3``` to display graphics
+
+
+## Where to find examples?
+Screenshots are given in ```pictures``` directory. 
+Some files to open are in ```data``` directory.

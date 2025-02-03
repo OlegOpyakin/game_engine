@@ -10,10 +10,6 @@
 #define COLOR_BLACK 0x000000
 
 
-#define MAIN
-
-
-#ifdef MAIN
 int main(){
     SDL_Init(SDL_INIT_VIDEO);
 
@@ -38,6 +34,7 @@ int main(){
     LoadFromObjectFile(path, &figure.tris);
 
     // projection matrix
+
     matrix4x4 proj_mat;
     proj_mat = Matrix_MakeProjection(90.0f, (float)HEIGHT / (float)WIDTH, 0.1f, 1000.0f);
 
@@ -80,25 +77,14 @@ int main(){
             }
         }
 
-
-        //theta += 0.01f; 
-
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
         SDL_RenderClear( renderer );
-
-        // rotation matrix
-
-        matrix4x4 rotation_x, rotation_z;
-
-        rotation_z = Matrix_MakeRotationZ(theta * 0.5f);
-        rotation_x = Matrix_MakeRotationX(theta);
 
         matrix4x4 translation_mat;
         translation_mat = Matrix_MakeTranslation( 0.0f, 0.0f, 5.0f ); 
 
         matrix4x4 world_mat;
         world_mat = Matrix_MakeIdentity();
-        //world_mat = Matrix_MultiplyMatrix(rotation_z, rotation_x);
         world_mat = Matrix_MultiplyMatrix(world_mat, translation_mat);
 
         vec3d vector_up = { 0, -1, 0 };
@@ -223,7 +209,6 @@ int main(){
         }
 
         SDL_RenderPresent( renderer );
-        //SDL_Delay(16);
     }
     SDL_DestroyRenderer( renderer );
     SDL_DestroyWindow( window );
@@ -231,55 +216,3 @@ int main(){
 
     return 0;
 }
-#endif
-
-
-#ifdef DEBUG
-
-int main()
-{
-    SDL_Init( SDL_INIT_VIDEO );
-    SDL_Window* window = SDL_CreateWindow("SDL", WIDTH, HEIGHT, 0);
-    SDL_Renderer* renderer = SDL_CreateRenderer(window, NULL);
-
-    std::vector< SDL_Vertex > verts;
-
-    SDL_Vertex v1 = { SDL_FPoint{ 400, 150 }, SDL_FColor{ 255, 255, 255 }};
-    SDL_Vertex v2 = { SDL_FPoint{ 200, 450 }, SDL_FColor{ 255, 255, 255 }};
-    SDL_Vertex v3 = { SDL_FPoint{ 600, 450 }, SDL_FColor{ 255, 255, 255 }};
-
-    verts.push_back(v1);
-    verts.push_back(v2);
-    verts.push_back(v3);
-
-    SDL_Event event;
-    bool running = true;
-    while( running )
-    {
-        SDL_Event ev;
-        while (SDL_PollEvent(&event)) {
-            if (event.type == SDL_EVENT_QUIT) {
-                running = false;
-            }
-        }
-
-        //SDL_SetRenderDrawColor( renderer, 0, 0, 0, SDL_ALPHA_OPAQUE );
-        SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
-        SDL_RenderClear( renderer );
-
-        SDL_RenderGeometry( renderer, nullptr, verts.data(), verts.size(), nullptr, 0 );
-
-        SDL_SetRenderDrawColor(renderer, 100, 100, 100, SDL_ALPHA_OPAQUE);
-        SDL_RenderLine( renderer, 400, 150, 250, 450);
-
-        SDL_RenderPresent( renderer );
-    }
-
-    SDL_DestroyRenderer( renderer );
-    SDL_DestroyWindow( window );
-    SDL_Quit();
-
-    return 0;
-}
-
-#endif

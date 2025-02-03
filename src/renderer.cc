@@ -16,9 +16,11 @@ void RenderTriangle(SDL_Renderer* renderer, float x1, float y1,
 
     SDL_RenderGeometry( renderer, nullptr, verts.data(), verts.size(), nullptr, 0 );
 
+    //show triangle edge
     /*
     SDL_SetRenderDrawColor(renderer,0 , 0, 0, SDL_ALPHA_OPAQUE);
     SDL_RenderLine( renderer, x1, y1, x2, y2);
     SDL_RenderLine( renderer, x2, y2, x3, y3);
-    SDL_RenderLine( renderer, x3, y3, x1, y1);*/
+    SDL_RenderLine( renderer, x3, y3, x1, y1);
+    */
 }

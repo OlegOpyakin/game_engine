@@ -1,6 +1,6 @@
 #include "parser.h"
 
-bool LoadFromObjectFile(std::string filename, std::vector<triangle> *tris) //const char *filename
+bool LoadFromObjectFile(std::string filename, std::vector<triangle> *tris)
 {
 	std::ifstream f(filename, std::ios::in);
 	if (!f){
